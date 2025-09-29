@@ -1,5 +1,5 @@
 # Resnet-Exploration_300Gecs
-![plain graph](https://i.imgur.com/i9eIJQA.png)
+![plain graph](https://i.imgur.com/i9eIJQA.png "Plain graph")
 
 ![resnet graph](https://i.imgur.com/2Cc2pZl.png)
 
