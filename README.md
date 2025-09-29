@@ -1,7 +1,7 @@
 # Resnet-Exploration_300Gecs
 ![plain](./Screenshot 2025-09-29 165319.png)
 
-![A cute cat](https://placekitten.com/400/300)
+![A cute cat](https://i.imgur.com/i9eIJQA.png)
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="2qmzniu"><a href="https://imgur.com/2qmzniu">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
