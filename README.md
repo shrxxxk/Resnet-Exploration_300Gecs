@@ -17,9 +17,12 @@ berikut adalah hyperparamter yang digunakan untuk komperasi antara 2 model (plai
 Pada saat mulai training, validation accuracy pada plain34 di epochs 1/10 22.86, kemudian turun menjadi 15.9% di epochs 2, sedangkan pada model resnet34 validation accuracy pada epochs 1 38.37%, dan mengalami penurunan hingga epochs 3 hingga menjadi 32.2%. Pada plain34 hanya mengalami kenaikan pada epochs 2 epochs saja, yaitu 3 dan 7 sedangkan pada resnet34 mengalami kenaikan pada epochs 4, 5, 6, dan 8. 
 
 plain34
+
 ![plain](https://i.imgur.com/jczcNoN.png)
 ![plain](https://i.imgur.com/pbg2Xpl.png)
+
 resnet34
+
 ![resnet](https://i.imgur.com/fcpe8QK.png)
 ![resnet](https://i.imgur.com/fcpe8QK.png)
 
