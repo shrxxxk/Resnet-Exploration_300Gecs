@@ -3,9 +3,9 @@
 
 ![resnet graph](https://i.imgur.com/2Cc2pZl.png)
 
-![confusion matrix plain](https://i.imgur.com/2Cc2pZl.png)
+![confusion matrix plain](https://i.imgur.com/2qmzniu.png)
 
-![confusion matrix resnet](https://i.imgur.com/2Cc2pZl.png)
+![confusion matrix resnet](https://i.imgur.com/1YHalql.png)
 
 berikut adalah hyperparamter yang digunakan untuk komperasi antara 2 model (plain34 vs resnet34):
 # Hyperparameters
