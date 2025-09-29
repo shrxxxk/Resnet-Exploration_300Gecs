@@ -1,6 +1,6 @@
 # Resnet-Exploration_300Gecs
 <blockquote class="imgur-embed-pub" lang="en" data-id="i9eIJQA"><a href="https://imgur.com/i9eIJQA">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
+![Employee Data](https://imgur.com/i9eIJQA)
 <blockquote class="imgur-embed-pub" lang="en" data-id="2qmzniu"><a href="https://imgur.com/2qmzniu">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="2Cc2pZl"><a href="https://imgur.com/2Cc2pZl">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
