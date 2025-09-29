@@ -1,5 +1,5 @@
 # Resnet-Exploration_300Gecs
-![plain](/repository/Screenshot 2025-09-29 165319.png?raw=true "aa")
+![plain](./Screenshot 2025-09-29 165319.png)
 ![Employee Data](https://imgur.com/i9eIJQA)
 
 ![A cute cat](https://placekitten.com/400/300)
