@@ -1,9 +1,9 @@
 # Resnet-Exploration_300Gecs
 
-#plain34 loss and accuracy history graph
+# plain34 loss and accuracy history graph
 ![plain graph](https://i.imgur.com/i9eIJQA.png )
 
-#resNET34 loss and accuracy history graph
+# resNET34 loss and accuracy history graph
 ![resnet graph](https://i.imgur.com/2Cc2pZl.png)
 
 Model Polos (Plain Model)
@@ -18,11 +18,15 @@ Akurasi: Garis akurasi pelatihan dan validasi sama-sama naik secara konsisten da
 Loss: Garis loss pelatihan dan validasi sama-sama menurun dan tetap rendah.
 Kesimpulan: Ini menunjukkan generalisasi yang bagus. Model tidak hanya belajar dari data pelatihan, tetapi juga mampu memberikan prediksi yang akurat pada data yang belum pernah dilihat sebelumnya. Ini adalah ciri model yang robust dan andal.
 
-#plain34 confussion matrix
+# plain34 confussion matrix
 ![confusion matrix plain](https://i.imgur.com/2qmzniu.png)
 
-#resnet34 confussion matrix
+Kegagalan Total pada Soto Ayam: Model sepenuhnya "buta" terhadap kelas soto_ayam. Sebagian besar gambar soto_ayam salah diidentifikasi sebagai bakso (20 kali) dan gado_gado (13 kali). Ini menunjukkan kemungkinan adanya kemiripan visual yang sangat tinggi (misalnya, makanan berkuah dalam mangkuk) yang tidak dapat dibedakan oleh model.Kebingungan Antara Makanan Berkuah: Ada kebingungan besar antara bakso, gado_gado (yang terkadang disajikan dengan kuah kacang), dan soto_ayam. Model cenderung "memilih" bakso sebagai tebakan default untuk gambar-gambar ini.Kebingungan Rendang dan Nasi Goreng: Model cukup sering salah mengira rendang sebagai nasi_goreng (15 kali). Ini bisa jadi karena palet warna yang serupa (kecoklatan) atau cara penyajian dalam dataset.
+
+# resnet34 confussion matrix
 ![confusion matrix resnet](https://i.imgur.com/1YHalql.png)
+
+Peningkatan TerbesaradalahKelas soto_ayam yang sebelumnya gagal total, kini berhasil dikenali dengan cukup baik (29 dari 39 gambar benar). Ini adalah perbaikan paling signifikan.Kelas Terbaik menjadi Nasi Goreng (49 benar) dan Rendang (37 benar) menunjukkan kinerja yang solid dan menjadi kelas yang paling andal bagi model ini.Terdapat masalah baru yaitu Kinerja pada kelas bakso dan gado_gado justru menurun drastis. Keduanya sekarang sangat sering salah diklasifikasikan sebagai soto_ayam.
 
 
 
@@ -38,12 +42,16 @@ Pada saat mulai training, validation accuracy pada plain34 di epochs 1/10 22.86,
 ## plain34
 
 ![plain](https://i.imgur.com/jczcNoN.png)
-![plain](https://i.imgur.com/pbg2Xpl.png)
+
+
+Pada plain34 training memiliki validation accuracy sebesar 22.86% saat training dimulai, akurasi validasi terupdate 3 kali selama 10 epoch di mana akurasi validasi terbesar berada di 54,29%
 
 ## resnet34
 
 ![resnet](https://i.imgur.com/fcpe8QK.png)
-![resnet](https://imgur.com/c9Gj8eT.png)
+
+Pada resnet34 training memiliki akurasi validasi 38,47% saat training dimulai, akurasi validasi terupdate 5 kali selama 10 epoch dimana akurasi validasi terbesar berada di 60%
+
 
 Pada kedua gambar diatas dapat dilihat jika kenaikan nilai accuracy pada resnet34 lebih stabil jika dibandingkan dengan plain34, hal ini dikarenakan resnet terdapat skip connections. Skip connections memungkinkan gradien pada layer sebelumnya untuk melewati beberapa lapisan dan langsung ditambahkan ke lapisan yang lebih dalam. Skip connections tersebut yang membuat model resnet ini akurasinya terus meningkat selama training yang kita lakukan.
 
