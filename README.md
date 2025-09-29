@@ -1,6 +1,5 @@
 # Resnet-Exploration_300Gecs
 ![plain](./Screenshot 2025-09-29 165319.png)
-![Employee Data](https://imgur.com/i9eIJQA)
 
 ![A cute cat](https://placekitten.com/400/300)
 
