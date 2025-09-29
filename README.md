@@ -1,10 +1,27 @@
 # Resnet-Exploration_300Gecs
-![plain graph](https://i.imgur.com/i9eIJQA.png "Plain graph")
 
+#plain34 loss and accuracy history graph
+![plain graph](https://i.imgur.com/i9eIJQA.png )
+
+#resNET34 loss and accuracy history graph
 ![resnet graph](https://i.imgur.com/2Cc2pZl.png)
 
+Model Polos (Plain Model)
+
+Akurasi: Garis akurasi pelatihan (biru) terus meningkat hingga mendekati 100%, namun garis akurasi validasi (oranye) stagnan dan bahkan sedikit menurun setelah epoch ke-20.
+Loss: Garis loss pelatihan (biru) terus menurun, tetapi garis loss validasi (oranye) mulai naik setelah epoch ke-20.
+Kesimpulan: Ini adalah tanda klasik dari overfitting overfitting. Artinya, model menjadi terlalu "hafal" dengan data pelatihan, tetapi tidak mampu menggeneralisasi dengan baik pada data baru (data validasi). Kinerjanya buruk di dunia nyata.
+
+Model ResNet
+
+Akurasi: Garis akurasi pelatihan dan validasi sama-sama naik secara konsisten dan nilainya sangat berdekatan. Keduanya mencapai akurasi yang lebih baik dari lain .
+Loss: Garis loss pelatihan dan validasi sama-sama menurun dan tetap rendah.
+Kesimpulan: Ini menunjukkan generalisasi yang bagus. Model tidak hanya belajar dari data pelatihan, tetapi juga mampu memberikan prediksi yang akurat pada data yang belum pernah dilihat sebelumnya. Ini adalah ciri model yang robust dan andal.
+
+#plain34 confussion matrix
 ![confusion matrix plain](https://i.imgur.com/2qmzniu.png)
 
+#resnet34 confussion matrix
 ![confusion matrix resnet](https://i.imgur.com/1YHalql.png)
 
 
