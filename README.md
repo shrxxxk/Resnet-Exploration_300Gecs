@@ -1,13 +1,6 @@
 # Resnet-Exploration_300Gecs
-![plain](./Screenshot 2025-09-29 165319.png)
-
-![A cute cat](https://i.imgur.com/i9eIJQA.png)
-
-<blockquote class="imgur-embed-pub" lang="en" data-id="2qmzniu"><a href="https://imgur.com/2qmzniu">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
-<blockquote class="imgur-embed-pub" lang="en" data-id="2Cc2pZl"><a href="https://imgur.com/2Cc2pZl">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
-<blockquote class="imgur-embed-pub" lang="en" data-id="1YHalql"><a href="https://imgur.com/1YHalql">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+![plain graph](https://i.imgur.com/i9eIJQA.png)
+![resnet graph]([https://i.imgur.com/2Cc2pZl.png)
 
 berikut adalah hyperparamter yang digunakan untuk komperasi antara 2 model (plain34 vs resnet34):
 # Hyperparameters
