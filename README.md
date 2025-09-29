@@ -24,7 +24,7 @@ plain34
 resnet34
 
 ![resnet](https://i.imgur.com/fcpe8QK.png)
-![resnet](https://i.imgur.com/fcpe8QK.png)
+![resnet](https://imgur.com/c9Gj8eT.png)
 
 Pada kedua gambar diatas dapat dilihat jika kenaikan nilai accuracy pada resnet34 lebih stabil jika dibandingkan dengan plain34, hal ini dikarenakan resnet terdapat skip connections. Skip connections memungkinkan gradien pada layer sebelumnya untuk melewati beberapa lapisan dan langsung ditambahkan ke lapisan yang lebih dalam. Skip connections tersebut yang membuat model resnet ini akurasinya terus meningkat selama training yang kita lakukan.
 
