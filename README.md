@@ -1,6 +1,9 @@
 # Resnet-Exploration_300Gecs
 ![plain](/repository/Screenshot 2025-09-29 165319.png?raw=true "aa")
 ![Employee Data](https://imgur.com/i9eIJQA)
+
+![A cute cat](https://placekitten.com/400/300)
+
 <blockquote class="imgur-embed-pub" lang="en" data-id="2qmzniu"><a href="https://imgur.com/2qmzniu">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="2Cc2pZl"><a href="https://imgur.com/2Cc2pZl">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
