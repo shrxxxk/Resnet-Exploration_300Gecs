@@ -1,5 +1,6 @@
 # Resnet-Exploration_300Gecs
 ![plain graph](https://i.imgur.com/i9eIJQA.png)
+
 ![resnet graph]([https://i.imgur.com/2Cc2pZl.png)
 
 berikut adalah hyperparamter yang digunakan untuk komperasi antara 2 model (plain34 vs resnet34):
