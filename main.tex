@@ -412,9 +412,9 @@ Dari hasil yang didapatkan, dapat dilihat bahwa modifikasi SE Block memberikan p
 Selama pengerjaan tugas ini, kelompok kami menggunakan AI assistant untuk beberapa keperluan:
 
 \begin{itemize}
-    \item \textbf{Debugging}: "Mengapa model Plain-34 mengalami degradasi pada validation accuracy?"
-    \item \textbf{Implementasi}: "Bagaimana cara mengimplementasikan residual connection pada PyTorch?"
-    \item \textbf{Analisis}: "Jelaskan perbedaan antara pre-activation dan post-activation ResNet"
+	\item \textbf{Debugging}: "Kenapa encoding pada kode ini terjadi berulang kali?"
+    \item \textbf{Implementasi}: "Bagaimana implementasi dari Preactivation dan SE Block pada resnet?"
+    \item \textbf{Analisis}: "Bagaimana SE Block bisa lebih baik dibandingkan Preactivation"
 \end{itemize}
 
 \subsection{Bagian yang Dibantu AI}
@@ -442,7 +442,8 @@ Setiap output dari AI assistant diverifikasi dengan:
 Dari eksperimen yang dilakukan, dapat disimpulkan bahwa:
 
 \begin{enumerate}
-    \item Residual connection secara signifikan meningkatkan kemampuan optimasi model deep network dan mengatasi masalah degradasi.
+  	\item Persoalan degradasi yang terjadi dapat diatasi dengan baik dengan adanya skip connection.
+    \item ResNet-34 menunjukkan peningkatan performa yang signifikan dibandingkan dengan Plain-34.
     \item Modifikasi arsitektur seperti Pre-activation ResNet memberikan peningkatan performa yang baik, namun tidak sebaik SE Block.
     \item Integrasi SE Block membuat model menjadi lebih pintar dalam mengenali fitur-fitur penting pada sebuah gambar karena penambahan bobot pada setiap channel.
 \end{enumerate}
@@ -488,5 +489,6 @@ PyTorch Documentation. \textit{torch.nn - Neural Network Modules}. Diakses dari:
 Repositori GitHub Kelompok. \textit{ResNet Exploration}. Diakses dari: \url{https://github.com/shrxxxk/Resnet-Exploration_300Gecs.git}
 
 \end{thebibliography}
+
 
 \end{document}
