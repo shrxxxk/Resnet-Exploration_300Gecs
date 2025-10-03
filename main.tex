@@ -1,0 +1,492 @@
+\documentclass[11pt,a4paper]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%% Credit %%%%%%%%%%%%%%%%%%%%%%%%
+% template ini dibuat oleh martin.manullang@if.itera.ac.id untuk dipergunakan oleh seluruh sivitas akademik itera.
+
+%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGE starts HERE %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{lmodern} % <-- ADDED: Fixes the font expansion error by providing scalable fonts.
+\usepackage{float}   % <-- ADDED: Allows the use of [H] for table/figure placement.
+
+\captionsetup[table]{name=Tabel}
+\captionsetup[figure]{name=Gambar}
+\usepackage{tabulary}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{placeins}
+% \usepackage{graphicx} % <-- REMOVED DUPLICATE
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+% \usepackage{caption} % <-- REMOVED DUPLICATE
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{psfrag}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{beramono}
+\usepackage{listings}
+\usepackage{xcolor} 
+\usepackage{booktabs}
+
+
+
+% custom color & style for listing
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{LightGray}{gray}{0.9}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{green},
+    keywordstyle=\color{codegreen},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                   
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Kode}
+%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGE ends HERE %%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Data Diri %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\student}{\textbf{
+Rayhan Fatih Gunawan (122140134) \\
+Muhammad Nelwan Fakhri(122140173) \\
+Raditya Erza Farandi(122140209)
+}}
+\newcommand{\course}{\textbf{\textit{Deep Learning}}}
+\newcommand{\assignment}{\textbf{Eksplorasi ResNet-34}}
+
+%%%%%%%%%%%%%%%%%%% using theorem style %%%%%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{quest}{Question}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Rayhan F.G., Muhammad N.F., Raditya E.F.}
+\rhead{\thepage}
+\cfoot{\textbf{Eksplorasi ResNet-34 | \textit{Deep Learning}}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%%%%%%%%%%%%%%  Shortcut for usual set of numbers  %%%%%%%%%%%
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\setlength\headheight{14pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+	\includegraphics[scale = 0.15]{asset/ifitera-header.png}
+	\vspace{0.1cm}
+\end{center}
+\noindent
+\rule{17cm}{0.2cm}\\[0.3cm]
+Nama:
+\\ \student \hfill \assignment\\[0.1cm]
+Mata Kuliah: \course \hfill\\
+\rule{17cm}{0.05cm}
+\vspace{0.1cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BODY DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Pendahuluan}
+
+RResNet (Residual Network) adalah arsitektur jaringan saraf konvolusi (CNN) yang dirancang untuk mengatasi masalah degradasi yang terjadi pada model yang sangat dalam, di mana penambahan lapisan justru menurunkan akurasi. Kunci dari ResNet adalah pengenalan "koneksi residual" atau shortcut connection yang memungkinkan informasi dari lapisan sebelumnya untuk melompati beberapa lapisan dan langsung ditambahkan ke lapisan yang lebih dalam. Mekanisme ini tidak hanya memfasilitasi aliran gradien selama proses pelatihan untuk mencegah vanishing gradient, tetapi juga memungkinkan jaringan untuk mempelajari fungsi identitas jika sebuah lapisan ternyata tidak diperlukan. Dengan kemampuannya untuk melatih jaringan yang jauh lebih dalam secara efektif, ResNet berhasil mencapai performa yang luar biasa dalam tugas-tugas pengenalan visual dan menjadi fondasi bagi banyak model canggih lainnya.esidual Network (ResNet) merupakan salah satu arsitektur deep learning yang revolusioner dalam mengatasi masalah degradasi pada jaringan neural dalam. Tugas eksplorasi ini bertujuan untuk memberikan pemahaman praktis mengenai peran residual connection dalam meningkatkan performa model, serta mengeksplorasi berbagai modifikasi arsitektur yang dapat diterapkan untuk optimasi lebih lanjut.
+
+Eksperimen dilakukan menggunakan dataset 5 Makanan Indonesia yang telah dikerjakan pada tugas sebelumnya. Laporan ini menyajikan hasil dari tiga tahap pengerjaan: analisis performa Plain-34 (ResNet-34 tanpa residual connection), implementasi residual connection menjadi ResNet-34 penuh, dan eksperimen dengan modifikasi arsitektur.
+
+\subsection{Link Repositori}
+
+Source code lengkap untuk proyek ini dapat diakses melalui:
+
+\begin{itemize}
+    \item \href{https://github.com/shrxxxk/Resnet-Exploration_300Gecs.git}{GitHub Repository}
+\end{itemize}
+
+\section{Tahap 1: Analisis Performa Model Dasar (Plain-34)}
+
+\subsection{Deskripsi Arsitektur Plain-34}
+
+Plain-34 merupakan arsitektur deep neural network dengan 34 layer yang tidak memiliki skip connection atau residual connection. Model ini dibangun dengan struktur yang sama dengan ResNet-34, namun tanpa shortcut path yang menjadi karakteristik utama ResNet. Arsitektur ini digunakan sebagai baseline untuk membandingkan dampak residual connection terhadap performa model.
+
+\subsection{Konfigurasi Hyperparameter}
+
+Berikut adalah konfigurasi hyperparameter yang digunakan dalam pelatihan model Plain-34:
+
+\begin{table}[H]
+\centering
+\caption{Konfigurasi Hyperparameter Pelatihan}
+\label{tab:hyperparameter}
+\begin{tabular}{ll}
+\toprule
+\textbf{Parameter} & \textbf{Nilai} \\
+\midrule
+Learning Rate & 0.0005 \\
+Batch Size & 24 \\
+Optimizer & Adam \\
+Jumlah Epoch & 10 \\
+Loss Function & CrossEntropyLoss \\
+Data Augmentation & Random Crop, Horizontal Flip \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hasil Pelatihan Plain-34}
+
+Tabel \ref{tab:plain34-results} menunjukkan metrik performa model Plain-34 selama proses pelatihan.
+
+\begin{table}[H]
+\centering
+\caption{Hasil Pelatihan Model Plain-34}
+\label{tab:plain34-results}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Epoch} & \textbf{Train Loss} & \textbf{Train Acc (\%)} & \textbf{Val Loss} & \textbf{Val Acc (\%)} \\
+\midrule
+1 & 1.6177 & 22.19 & 1.517 & 29.39 \\
+2 & 1.432 & 33.84 & 7.849 & 25.71 \\
+3 & 1.432 & 30.78 & 1.355 & 36.33 \\
+4 & 1.380 & 36.81 &  1.216 & 46.12 \\
+5 & 1.364 & 37.01 & 1.369 & 44.49 \\
+6 & 1.372 & 38.96 & 1.719 & 28.57 \\
+7 & 1.278 & 43.15 & 1.182 & 46.94 \\
+8 & 1.250 & 42.84 &  1.1426 & 46.53 \\
+9 & 1.262 & 42.23 &  1.3414 & 33.47 \\
+10 & 1.233 & 43.66 & 2.678  &  37.55 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analisis Hasil Plain-34}
+
+Dari hasil pelatihan Plain-34, dapat diamati beberapa hal penting:
+
+\begin{itemize}
+    \item \textbf{Overfitting}: Model menunjukkan tanda-tanda overfitting , di mana training accuracy meningkat tetapi validation accuracy cenderung sama atau atau menurun, terlihat di epoch 6,9, dan 10.
+    
+    \item \textbf{Degradasi}: Performa pada validasi tidak menunjukkan peningkatan yang konsisten di setiap epoch, mengindikasikan masalah degradasi pada deep plain network.
+    
+    \item \textbf{Loss Validation Tinggi}: Validation loss yang yang terkadang meninggi dan cenderung meningkat menunjukkan bahwa model kurang mampu untuk generalisasi gambar yang belum pernah dilihat.
+\end{itemize}
+
+\section{Tahap 2: Implementasi Residual Connection (ResNet-34)}
+
+\subsection{Modifikasi Arsitektur}
+
+Residual connection ditambahkan pada setiap residual block dengan mengimplementasikan skip connection yang memungkinkan gradient mengalir lebih lancar dan mempertahankan nilai penalty selama proses backpropagation . Modifikasi utama meliputi:
+
+\begin{itemize}
+    \item Penambahan identity mapping (shortcut connection) pada setiap residual block
+    \item Implementasi projection shortcut untuk menangani perubahan dimensi
+    \item Penyesuaian structure block agar kompatibel dengan skip connection
+\end{itemize}
+
+\subsection{Hasil Pelatihan ResNet-34}
+
+Tabel \ref{tab:resnet34-results} menunjukkan hasil pelatihan model ResNet-34 dengan residual connection.
+
+\begin{table}[H]
+\centering
+\caption{Hasil Pelatihan Model ResNet-34}
+\label{tab:resnet34-results}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Epoch} & \textbf{Train Loss} & \textbf{Train Acc (\%)} & \textbf{Val Loss} & \textbf{Val Acc (\%)} \\
+\midrule
+1 & 1.562 & 32.52 & 2.226 & 30.20 \\
+2 & 1.353 & 39.26 & 1.170 & 45.71 \\
+3 & 1.273 & 45.40 & 1.421 & 45.71\\
+4 & 1.204 & 52.04 & 1.366 & 40.00 \\
+5 & 1.160 & 49.59 & 1.102 & 52.24 \\
+6 & 1.133 & 52.25 & 1.024 & 58.78 \\
+7 & 1.109 & 56.65 & 1.163 & 56.33\\
+8 & 1.062 & 56.65 & 1.391 & 40.00 \\
+9 & 1.001 & 58.90 & 1.650 & 47.76 \\
+10 & 0.983 & 61.04 &  1.2120 & 53.88 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Perbandingan Plain-34 vs ResNet-34}
+
+\begin{table}[H]
+\centering
+\caption{Perbandingan Performa Plain-34 dan ResNet-34 pada Epoch Terakhir}
+\label{tab:comparison}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Train Loss} & \textbf{Train Acc} & \textbf{Val Loss} & \textbf{Val Acc} \\
+\midrule
+Plain-34 & 1.233 & 43.66 & 2.678  &  37.55 \\
+ResNet-34 & 0.983 & 61.04 &  1.212 & 53.88 \\
+\midrule
+\textbf{Improvement} & -25.28\% & +17.38\% & +14.66\% & +16.33\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analisis Dampak Residual Connection}
+
+Residual connection memberikan dampak signifikan terhadap performa model:
+
+\begin{itemize}
+    \item \textbf{Training Loss Lebih Rendah}: ResNet-34 berhasil mencapai training loss yang lebih rendah daripada Plain-34(0.983 vs 1.233), perbandingan tersebut menunjukkan jika resnet34 lebih baik dalam hal optimasi.
+    
+    \item \textbf{Gradient Flow}: Skip connectiom mengatasi vanishing gradient yang umum terjadi pada deep network.
+    
+    \item \textbf{Konvergensi}: ResNet-34 Training Process berjalan lebih stabil  dibandingkan dengan Plain-34.
+\end{itemize}
+
+\section{Tahap 3: Eksperimen Modifikasi Arsitektur}
+
+\subsection{Modifikasi yang Dipilih}
+
+Kelompok kami memilih dua modifikasi berikut:
+
+\subsubsection{Modifikasi 1: [PreActivation ResNet]}
+
+\textbf{Justifikasi:} Karena menempatkan activation function sebelum convolution mungkin dapat membantu proses training dikarenakan di resnet standar, proses shortcut melwati fungsi aktivasi relu. Jika activation ditempatkan sebelum convolutional layer maka backpropragation bisa dilakukan tanpa hambatan sehingga dapat membantu dalam normalisasi input dan mempercepat konvergensi.
+
+\textbf{Implementasi:} Implementasi modifikasi Pre-actiation ResNet dilakukan melalui tiga langkah utama, yaitu Pembuatan Blok Pre-Activation, Penyesuaian Arsitektur Model, dan Integrasi ke dalam Model ResNet-34
+
+\textbf{Hasil:} 
+
+\begin{table}[H]
+\centering
+\caption{Hasil Pelatihan Model Preactivation ResNet-34}
+\label{tab:Preactivation PreActivation-resnet34-results}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Epoch} & \textbf{Train Loss} & \textbf{Train Acc (\%)} & \textbf{Val Loss} & \textbf{Val Acc (\%)} \\
+\midrule
+1 & 1.4927 & 33.54 & 1.4430 & 37.96 \\
+2 & 1.2928 & 44.89 & 1.3539 & 45.31 \\
+3 & 1.2893 & 44.38 & 1.2819 & 40.41\\
+4 & 1.1969 & 48.77 & 1.4739 & 35.92 \\
+5 & 1.1639 & 51.12 & 1.0285 & 56.33 \\
+6 & 1.1497 & 53.48 & 1.0595 & 55.10 \\
+7 & 1.0858 & 56.85 & 0.9967 & 55.92\\
+8 & 1.0122 & 58.69 & 1.8952 & 44.49 \\
+9 & 1.0468 & 60.33 & 1.2954 & 45.31 \\
+10 &  1.0529 & 57.87 & 1.1264 & 62.04 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Modifikasi 2: [Squeeze-and-Excitation (SE) Block]}
+
+\textbf{Justifikasi:} Karena pada resnet biasa semua beban pada setiap kernel dianggap sama, jika ditambah kan SE block pada resnet maka bobot bisa diatur sehingga fitur yang memiliki relevan bobotnya akan tinggi dan yang tidak relevan akan rendah, sehingga dapat meningkatkan performa model.
+
+\textbf{Implementasi:} Implementasi modifikasi SE Block dilakukan dengan cara pembuatan kelas SE Block, Integrasi SEBlock ke dalam Residual Block, dan Penyesuaian Arsitektur Model ResNet-34.
+
+\textbf{Hasil:} 
+
+\begin{table}[H]
+\centering
+\caption{Hasil Pelatihan Model SE Block ResNet-34}
+\label{tab:Preactivation SEBlock-resnet34-results}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Epoch} & \textbf{Train Loss} & \textbf{Train Acc (\%)} & \textbf{Val Loss} & \textbf{Val Acc (\%)} \\
+\midrule
+1 & 1.4519 & 33.54 & 1.2044 & 47.76 \\
+2 & 1.3257 & 40.80 & 1.2172 & 43.67 \\
+3 & 1.2426 & 46.01 & 1.1968 & 51.84 \\
+4 & 1.1876 & 46.52 & 1.2983 & 43.27 \\
+5 & 1.1173 & 51.33 & 1.2697 & 44.90 \\
+6 & 1.1527 & 50.51 & 1.1574 & 46.53 \\
+7 & 1.0750 & 54.29 & 1.1469 & 44.08 \\
+8 & 1.0657 & 55.83 & 1.2203 & 48.16 \\
+9 & 1.0486 & 56.24 & 0.9786 & 59.18 \\
+10 & 0.9589 & 59.92 & 0.7894 & 70.61 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Perbandingan Semua Variasi}
+
+\begin{table}[H]
+\centering
+\caption{Perbandingan Performa Semua Variasi Model}
+\label{tab:all-comparison}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Train Acc} & \textbf{Val Acc} & \textbf{Train Loss} & \textbf{Val Loss} \\
+\midrule
+Plain-34 & 43.66 \% & 37.55\% & 1.233 & 2.678 \\
+ResNet-34 &  61.04\% & 53.88\% & 0.983 & 1.212 \\
+Modifikasi 1 & 57.87\% & 62.04\% &  1.0529 & 1.1264\\
+Modifikasi 2 & 59.92\% & 70.61\% &  0.9589 &  0.7894\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Visualisasi Hasil}
+
+\subsection{Kurva Training}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{asset/figure-plain.png}
+    \caption{Perbandingan kurva training dan validation plain34}
+    \label{fig:training-curves}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{asset/figure-resnet.png}
+    \caption{Perbandingan kurva training dan validation resnet34}
+    \label{fig:training-curves}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{asset/figure-Preactresmod.png}
+    \caption{Perbandingan kurva training dan validation Preactivation ResNet}
+    \label{fig:training-curves}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{asset/figure-SEresmod.png}
+    \caption{Perbandingan kurva training dan validation SE Block ResNet}
+    \label{fig:training-curves}
+\end{figure}
+
+\subsection{Confusion Matrix}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{asset/matrix-SEresmod.png}
+    \caption{Confusion matrix untuk model terbaik}
+    \label{fig:confusion-matrix}
+\end{figure}
+
+
+\section{Diskusi dan Analisis}
+
+\subsection{Perbandingan PreActivation resnet dan resnet34}
+Dari hasil eksperimen, dapat dilihat bahwa modifikasi Pre-activation ResNet memberikan peningkatan performa yang baik dibandingkan dengan ResNet-34 standar. Meskipun tidak sebaik SE Block, Pre-activation ResNet menunjukkan bahwa penempatan fungsi aktivasi sebelum convolutional layer dapat membantu dalam proses training dengan memperlancar aliran gradien. Hal ini terlihat dari peningkatan validation accuracy yang mencapai 62.04\% dibandingkan dengan 53.88\% pada ResNet-34 standar.
+
+\subsection{Apakaha model menjadi fokus ke fitur yang lbih relevan ?}
+Dari hasil yang didapatkan, dapat dilihat bahwa modifikasi SE Block memberikan peningkatan performa yang signifikan dibandingkan dengan ResNet-34 standar dan Pre-activation ResNet. Dengan validation accuracy mencapai 70.61\%, SE Block menunjukkan kemampuannya dalam menyesuaikan bobot fitur yang lebih relevan, sehingga model dapat lebih fokus pada fitur-fitur penting dalam gambar. Hal ini mengindikasikan bahwa penambahan mekanisme attention melalui SE Block sangat efektif dalam meningkatkan kemampuan model untuk mengenali pola-pola yang lebih kompleks.
+
+\section{Peran dan Kontribusi AI Assistant}
+
+\subsection{Prompt yang Diajukan}
+
+Selama pengerjaan tugas ini, kelompok kami menggunakan AI assistant untuk beberapa keperluan:
+
+\begin{itemize}
+    \item \textbf{Debugging}: "Mengapa model Plain-34 mengalami degradasi pada validation accuracy?"
+    \item \textbf{Implementasi}: "Bagaimana cara mengimplementasikan residual connection pada PyTorch?"
+    \item \textbf{Analisis}: "Jelaskan perbedaan antara pre-activation dan post-activation ResNet"
+\end{itemize}
+
+\subsection{Bagian yang Dibantu AI}
+
+\begin{itemize}
+    \item Perbaikan bug pada implementasi Pre-activation ResNet dan SE Block
+    \item Saran tampilan iterasi training yang lebih komprehensif
+    \item Penjelasan mengenai konsep skip connection dan dampaknya pada gradient flow
+\end{itemize}
+
+\subsection{Verifikasi dan Modifikasi}
+
+Setiap output dari AI assistant diverifikasi dengan:
+
+\begin{itemize}
+    \item Membandingkan dengan paper referensi seperti "Deep Residual Learning for Image Recognition" oleh He et al. (2016) dan dokumentasi PyTorch \cite{pytorch-docs}
+    \item Diskusi dalam kelompok untuk memastikan pemahaman yang benar
+    \item Testing dengan eksperimen langsung pada model
+\end{itemize}
+
+\section{Kesimpulan}
+
+\subsection{Ringkasan Hasil}
+
+Dari eksperimen yang dilakukan, dapat disimpulkan bahwa:
+
+\begin{enumerate}
+    \item Residual connection secara signifikan meningkatkan kemampuan optimasi model deep network dan mengatasi masalah degradasi.
+    \item Modifikasi arsitektur seperti Pre-activation ResNet memberikan peningkatan performa yang baik, namun tidak sebaik SE Block.
+    \item Integrasi SE Block membuat model menjadi lebih pintar dalam mengenali fitur-fitur penting pada sebuah gambar karena penambahan bobot pada setiap channel.
+\end{enumerate}
+
+\subsection{Pembelajaran dan Insight}
+
+Melalui tugas eksplorasi ini, kelompok kami memperoleh pemahaman mendalam mengenai:
+
+\begin{itemize}
+    \item Pentingnya skip connection untuk pelatihan jaringan yang sangat dalam
+    \item Implementasi praktis dari berbagai modifikasi model resnet
+    \item Memodifikasi resner menjadi ResNext like block membutuhkan proses training yang lama, menurut kami trade off tidak setimpal dengan hasil yang didapatkan
+\end{itemize}
+
+\subsection{Saran Pengembangan}
+
+Untuk penelitian selanjutnya, dapat dipertimbangkan:
+
+\begin{itemize}
+    \item Mengimplementasikan modifikasi kernel atau stride
+    \item Implementasi beberapa teknik dalam satu model
+    \item Eksperimen dengan dataset yang lebih besar dan kompleks
+\end{itemize}
+
+\newpage
+\bibliographystyle{IEEEtran}
+\begin{thebibliography}{9}
+
+\bibitem{Zhou2023deep}
+Zhou H. (2023). An improved image processing algorithm for visual characteristics in graphic design. In \textit{PeerJ Computer Science 9} (:e1372) (https://doi.org/10.7717/peerj-cs.1372)
+
+\bibitem{Kim2022identity}
+Kim H, Alnemari M, Bagherzadeh N. (2022). A storage-efficient ensemble classification using filter sharing on binarized convolutional neural networks. In \textit{PeerJ Computer Science} (8:e924) (https://doi.org/10.7717/peerj-cs.924)
+
+\bibitem{xie2017aggregated}
+Jin, X. (2024). Analysis of Residual Block in the ResNet for Image Classification. In \textit{Proceedings of the 1st International Conference on Data Analysis and Machine Learning - DAML; ISBN 978-989-758-705-4, SciTePress} (pp. 246-250) (DOI: 10.5220/0012800400003885)
+
+
+\bibitem{pytorch-docs}
+PyTorch Documentation. \textit{torch.nn - Neural Network Modules}. Diakses dari: \url{https://pytorch.org/docs/stable/nn.html}
+
+\bibitem{github-repo}
+Repositori GitHub Kelompok. \textit{ResNet Exploration}. Diakses dari: \url{https://github.com/shrxxxk/Resnet-Exploration_300Gecs.git}
+
+\end{thebibliography}
+
+\end{document}
